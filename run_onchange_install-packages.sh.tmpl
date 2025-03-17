@@ -1,0 +1,17 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/sh
+sudo apt install -y ripgrep tmux
+
+curl -LsSf https://astral.sh/uv/install.sh | sh
+curl -fsSL https://get.pulumi.com | sh
+curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+
+# Install helix
+sudo add-apt-repository ppa:maveonair/helix-editor
+sudo apt update
+sudo apt install -y helix
+
+{{ else if eq .chezmoi.os "darwin" -}}
+#!/bin/sh
+brew install ripgrep tmux
+{{ end -}}
