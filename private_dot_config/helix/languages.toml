@@ -1,0 +1,34 @@
+[[language]]
+name = "python"
+scope = "source.python"
+injection-regex = "python"
+file-types = ["py", "pyi", "py3", "pyw", "ptl", "pyx", "pxd"]
+shebangs = ["python"]
+indent = { tab-width = 4, unit = "    " }
+formatter = { command = "ruff", args=["format", "-"]}
+language-servers = [ "ruff" , "pyright"]
+auto-format = true
+
+[language-server.ruff]
+command = "ruff"
+arsg = ["server"]
+
+[language-server.jinja-lsp]
+command = "jinja-lsp"
+
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+config = {}  # Empty config is required to prevent timeout errors
+
+[[language]]
+name = "jinja"
+scope = "text.html.jinja"
+injection-regex = "jinja"
+file-types = ["jinja", "jinja2", "j2"]
+indent = { tab-width = 2, unit = "  " }
+grammar = "jinja2"
+block-comment-tokens = { start = "{#", end = "#}" }
+# auto-format = true
+formatter = { command = "djlint" , args = ["--reformat", "%"]}
+language-servers = [ "jinja-lsp" ]
